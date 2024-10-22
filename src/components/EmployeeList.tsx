@@ -13,10 +13,12 @@ type SortConfig = {
 } | null;
 
 const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee }) => {
-  // State to manage search, filter, and sorting
+  // State to manage search, filter, sorting, and pagination
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDepartment, setFilterDepartment] = useState('');
   const [sortConfig, setSortConfig] = useState<SortConfig>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const employeesPerPage = 1; // Number of employees per page
 
   // Function to handle search
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,6 +67,14 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee
   const uniqueDepartments = employees
     .map((employee) => employee.department)
     .filter((dept, index, self) => self.indexOf(dept) === index);
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredEmployees.length / employeesPerPage);
+  const indexOfLastEmployee = currentPage * employeesPerPage;
+  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+  const currentEmployees = filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
+
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   // Render a sort arrow based on the current sort direction
   const renderSortArrow = (columnKey: keyof Employee) => {
@@ -121,8 +131,8 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee
           </tr>
         </thead>
         <tbody>
-          {filteredEmployees.length > 0 ? (
-            filteredEmployees.map((employee) => (
+          {currentEmployees.length > 0 ? (
+            currentEmployees.map((employee) => (
               <tr key={employee.id}>
                 <td>{employee.name}</td>
                 <td>{employee.email}</td>
@@ -157,6 +167,39 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee
           )}
         </tbody>
       </table>
+
+      {/* Pagination */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }}>
+        <button
+          onClick={() => paginate(currentPage - 1)}
+          disabled={currentPage === 1}
+          style={{ padding: '10px', margin: '0 5px' }}
+        >
+          Previous
+        </button>
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => paginate(index + 1)}
+            style={{
+              padding: '10px',
+              margin: '0 5px',
+              backgroundColor: currentPage === index + 1 ? '#00AA55' : '',
+              color: currentPage === index + 1 ? '#fff' : '',
+              cursor: 'pointer',
+            }}
+          >
+            {index + 1}
+          </button>
+        ))}
+        <button
+          onClick={() => paginate(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          style={{ padding: '10px', margin: '0 5px' }}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
