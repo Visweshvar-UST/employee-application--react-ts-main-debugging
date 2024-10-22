@@ -1,12 +1,11 @@
-// src/components/AddEmployee.tsx
 import React, { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Employee } from './Employee';
-
+import './AddEmployee.css'; // Import the CSS file
 
 interface AddEmployeeProps {
   onAddEmployee: (employee: Employee) => void;
-  onNavigate: (path: string) => void; // Add this line
+  onNavigate: (path: string) => void;
 }
 
 interface AddEmployeeState {
@@ -47,19 +46,46 @@ class AddEmployee extends Component<AddEmployeeProps, AddEmployeeState> {
     const { employee } = this.state;
 
     return (
-      <div>
+      <div className="add-employee-container">
         <h2>Add Employee</h2>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="name" value={employee.name} onChange={this.handleChange} placeholder="Name" required />
-          <input type="email" name="email" value={employee.email} onChange={this.handleChange} placeholder="Email" required />
-          <input type="text" name="phone" value={employee.phone} onChange={this.handleChange} placeholder="Phone" required />
-          <input type="text" name="department" value={employee.department} onChange={this.handleChange} placeholder="Department" required />
-          <input type="text" name="designation" value={employee.designation} onChange={this.handleChange} placeholder="Designation" required />
-          <input type="number" name="salary" value={employee.salary} onChange={this.handleChange} placeholder="Salary" required />
-          <input type="date" name="dateOfJoining" value={employee.dateOfJoining} onChange={this.handleChange} placeholder="Date of Joining" required />
-          <input type="text" name="location" value={employee.location} onChange={this.handleChange} placeholder="Location" required />
-          <input type="text" name="manager" value={employee.manager} onChange={this.handleChange} placeholder="Manager" required />
-          <button type="submit">Add Employee</button>
+        <form onSubmit={this.handleSubmit} className="employee-form">
+          <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input type="text" name="name" value={employee.name} onChange={this.handleChange} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input type="email" name="email" value={employee.email} onChange={this.handleChange} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone</label>
+            <input type="text" name="phone" value={employee.phone} onChange={this.handleChange} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="department">Department</label>
+            <input type="text" name="department" value={employee.department} onChange={this.handleChange} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="designation">Designation</label>
+            <input type="text" name="designation" value={employee.designation} onChange={this.handleChange} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="salary">Salary</label>
+            <input type="number" name="salary" value={employee.salary} onChange={this.handleChange} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="dateOfJoining">Date of Joining</label>
+            <input type="date" name="dateOfJoining" value={employee.dateOfJoining} onChange={this.handleChange} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="location">Location</label>
+            <input type="text" name="location" value={employee.location} onChange={this.handleChange} required />
+          </div>
+          <div className="form-group">
+            <label htmlFor="manager">Manager</label>
+            <input type="text" name="manager" value={employee.manager} onChange={this.handleChange} required />
+          </div>
+          <button type="submit" className="submit-btn">Add Employee</button>
         </form>
       </div>
     );

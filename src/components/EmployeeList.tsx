@@ -12,7 +12,14 @@ interface EmployeeListProps {
 const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee }) => {
   return (
     <div>
-      <button style={{alignContent: 'right'}}><Link to={`/`} style={{ textDecoration: 'none',color: '#fff' }}>New</Link></button>
+<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+  <Link to={`/`} style={{ textDecoration: 'none' }}>
+    <button style={{ backgroundColor: '#007bff', color: '#fff', padding: '10px 20px', border: 'none', cursor: 'pointer' }}>
+      New
+    </button>
+  </Link>
+</div>
+
       <h2>Employee List</h2>
       <table className="employee-table">
         <thead>
@@ -22,6 +29,10 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee
             <th>Phone</th>
             <th>Department</th>
             <th>Designation</th>
+            <th>Salary</th>
+            <th>DateOfJoining</th>
+            <th>Location</th>
+            <th>Manager</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -33,6 +44,10 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee
               <td>{employee.phone}</td>
               <td>{employee.department}</td>
               <td>{employee.designation}</td>
+              <td>{employee.salary}</td>
+              <td>{employee.dateOfJoining}</td>
+              <td>{employee.location}</td>
+              <td>{employee.manager}</td>
               <td>
                 <button>
                 <Link to={`/edit/${employee.id}`} style={{ textDecoration: 'none',color: '#fff' }}>Edit</Link>
