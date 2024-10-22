@@ -18,7 +18,7 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee
   const [filterDepartment, setFilterDepartment] = useState('');
   const [sortConfig, setSortConfig] = useState<SortConfig>(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const employeesPerPage = 1; // Number of employees per page
+  const employeesPerPage = 3; // Number of employees per page
 
   // Function to handle search
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -150,7 +150,7 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee
                     </Link>
                   </button>
                   <button
-                    style={{ backgroundColor: '#AA2222', color: '#fff' }}
+                    style={{ backgroundColor: '#CC1122', color: '#fff' }}
                     onClick={() => onDeleteEmployee(employee.id)}
                   >
                     Delete
@@ -184,7 +184,7 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee
             style={{
               padding: '10px',
               margin: '0 5px',
-              backgroundColor: currentPage === index + 1 ? '#00AA55' : '',
+              backgroundColor: currentPage === index + 1 ? '#003377' : '',
               color: currentPage === index + 1 ? '#fff' : '',
               cursor: 'pointer',
             }}
