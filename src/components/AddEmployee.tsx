@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { Employee } from './Employee';
 import './AddEmployee.css'; // Import the CSS file
 
@@ -47,6 +47,14 @@ class AddEmployee extends Component<AddEmployeeProps, AddEmployeeState> {
 
     return (
       <div className="add-employee-container">
+          {/* Search and Filter section */}
+          <div style={{ display: 'flex', float: 'inline-end' , justifyContent: 'space-between', marginBottom: '20px' }}>
+            <Link to={`/employees`} style={{ textDecoration: 'none' }}>
+              <button style={{ backgroundColor: '#0055AA', color: '#fff', padding: '10px 20px', border: 'none', cursor: 'pointer' }}>
+                List
+              </button>
+            </Link>
+          </div>
         <h2>Add Employee</h2>
         <form onSubmit={this.handleSubmit} className="employee-form">
           <div className="form-group">
