@@ -12,15 +12,15 @@ interface EmployeeListProps {
 const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee }) => {
   return (
     <div>
-<div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-  <Link to={`/`} style={{ textDecoration: 'none' }}>
-    <button style={{ backgroundColor: '#007bff', color: '#fff', padding: '10px 20px', border: 'none', cursor: 'pointer' }}>
-      New
-    </button>
-  </Link>
-</div>
 
       <h2>Employee List</h2>
+      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Link to={`/`} style={{ textDecoration: 'none' }}>
+          <button style={{ backgroundColor: '#00AA55', color: '#fff', padding: '10px 20px', border: 'none', cursor: 'pointer' }}>
+            New
+          </button>
+        </Link>
+      </div>
       <table className="employee-table">
         <thead>
           <tr>
@@ -52,7 +52,7 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ employees, onDeleteEmployee
                 <button>
                 <Link to={`/edit/${employee.id}`} style={{ textDecoration: 'none',color: '#fff' }}>Edit</Link>
                 </button>
-                <button onClick={() => onDeleteEmployee(employee.id)}>Delete</button>
+                <button style={{ backgroundColor: '#AA2222', margin: '10px 20px' }} onClick={() => onDeleteEmployee(employee.id)}>Delete</button>
               </td>
             </tr>
           ))}
